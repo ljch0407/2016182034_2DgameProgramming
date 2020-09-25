@@ -4,7 +4,8 @@
 * 최대한 오래살아남으며 점수를 올리는 방식으로 진행됨
 
 ![록맨](https://lh3.googleusercontent.com/proxy/3GxnIUPCOmiNC5BjztfxvVvw2pign8fa4o7IPcFvNPYtQJZLpc39gYx3BsX3PKH2skivJogW3YXbSLTRJMO2f_0R4iRvSEn_BW8pNoFuwE6WwDC5Z7IdNjo)
-
+![게임장면1](https://media.gq.com/photos/5b185245133fe616d116694d/16:9/w_1280,c_limit/mega-man-rocks-gq.jpg)
+![게임장면2](https://i2.wp.com/kakuchopurei.com/wp-content/uploads/2018/10/megaman9.jpg?resize=760%2C432&ssl=1)
 ***
 ## Scene 개수 : 4
 
