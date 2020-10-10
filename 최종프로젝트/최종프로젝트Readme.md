@@ -6,12 +6,13 @@
 ![록맨](https://lh3.googleusercontent.com/proxy/3GxnIUPCOmiNC5BjztfxvVvw2pign8fa4o7IPcFvNPYtQJZLpc39gYx3BsX3PKH2skivJogW3YXbSLTRJMO2f_0R4iRvSEn_BW8pNoFuwE6WwDC5Z7IdNjo)
 ![게임장면1](https://media.gq.com/photos/5b185245133fe616d116694d/16:9/w_1280,c_limit/mega-man-rocks-gq.jpg)
 ![게임장면2](https://i2.wp.com/kakuchopurei.com/wp-content/uploads/2018/10/megaman9.jpg?resize=760%2C432&ssl=1)
+![인게임_화면](./image/록맨런게임화면.jpg)
 ***
 ## Scene 개수 : 4
 
 * 기본적으로 Quit버튼으로 게임을 아무때나 종료가능
 * 인트로씬 - 게임을 처음 켰을때 인트로를 넣을 예정 인트로는 한번만 불리고 본격적으로 시작한 후에는 다시 돌아오지않음 씬도중 ESC를 입력하면 다음씬으로 넘어감
-* 게임메뉴씬 - 게임의 시작과 종료, 하이스코어씬으로 넘어갈 수 있는 버튼을 넣을예정 키입력은 마우스를 이용해 메뉴를 선택
+* 게임메뉴씬 - 게임의 시작과 종료, 하이스코어씬으로 넘어갈 수 있는 버튼을 넣을 예정 키입력은 마우스를 이용해 메뉴를 선택
   * 메뉴버튼 선택 - 본게임씬으로 넘어감
   * 하이스코어 선택 - 하이스코어 씬으로 넘어감
   * 종료 선택 - 게임을 종료
