@@ -5,7 +5,7 @@ class Player:
     def __init__(self):
         self.pos = 75,get_canvas_height()//4
         self.image = gfw.image.load('res/rockman.png')
-        self.delta =0,0
+        self.delta =0,25
         self.state='running'
         self.fidx = 0
         self.time=0
@@ -28,9 +28,11 @@ class Player:
                self.image.clip_draw(214,40,25,35,*self.pos,100,100)
 
         elif self.state == 'jump':
-           pass
+            self.image.clip_draw(265,40,30,40,*self.pos,100,100)
+            pass
 
         elif self.state=='jumpfire':
+            self.image.clip_draw(265,40,30,40,*self.pos,100,100)
             pass
         elif self.state=='gunfire':
             x,y = self.pos
@@ -49,7 +51,36 @@ class Player:
     def update(self):
         self.time += gfw.delta_time
         frame = self.time * self.FPS
-        self.fidx = int(frame) % 4 
+        self.fidx = int(frame) % 4
+
+        if self.state=='jump':
+            x,y=self.pos
+            dx,dy=self.delta
+
+            y+=dy
+            dy-=1
+            
+            self.pos=x,y
+            self.delta = dx,dy
+            if y<get_canvas_height()//4:
+                 self.pos = 75,get_canvas_height()//4
+                 self.delta =0,25
+                 self.state='running'
+                 
+         elif self.state=='jumpfire':
+            x,y=self.pos
+            dx,dy=self.delta
+
+            y+=dy
+            dy-=1
+            
+            self.pos=x,y
+            self.delta = dx,dy
+            if y<get_canvas_height()//4:
+                 self.pos = 75,get_canvas_height()//4
+                 self.delta =0,25
+                 self.state='running'
+        
         pass
 
     def handle_event(self,e):
