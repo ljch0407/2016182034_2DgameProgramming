@@ -26,6 +26,23 @@ class Player:
                 self.image.clip_draw(239,40,25,35,*self.pos,100,100)
             elif self.fidx==3:
                self.image.clip_draw(214,40,25,35,*self.pos,100,100)
+
+        elif self.state == 'jump':
+           pass
+
+        elif self.state=='jumpfire':
+            pass
+        elif self.state=='gunfire':
+            x,y = self.pos
+            if self.fidx==0:
+                self.image.clip_draw(48,10,31,33,x,y+20,100,100)
+            elif self.fidx == 1:
+                self.image.clip_draw(83,10,30,33,x,y+20,100,100)
+            elif self.fidx ==2:
+                self.image.clip_draw(110,10,33,33,x,y+20,100,100)
+            elif self.fidx==3:
+               self.image.clip_draw(83,10,30,32,x,y+20,100,100)
+
                 
                 
 
@@ -34,3 +51,27 @@ class Player:
         frame = self.time * self.FPS
         self.fidx = int(frame) % 4 
         pass
+
+    def handle_event(self,e):
+        if e.type == SDL_KEYDOWN:
+            if self.state=='jump':
+                if e.key ==SDLK_RETURN:
+                    self.state='jumpfire'
+            elif self.state=='running':
+                if e.key == SDLK_SPACE:
+                    self.state = 'jump'
+                elif e.key == SDLK_RETURN:
+                    self.state = 'gunfire'
+
+        elif e.type ==SDL_KEYUP:
+            if self.state=='jumpfire':
+                if e.key == SDLK_RETURN:
+                    self.state='jump'
+            elif self.state=='gunfire':
+                if e.key == SDLK_RETURN:
+                    self.fidx=0
+                    self.state='running'
+                
+                    
+                
+        
