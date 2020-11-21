@@ -1,15 +1,17 @@
 from pico2d import*
 import gfw
+import gobj
 
 class Player:
     def __init__(self):
-        self.pos = 75,get_canvas_height()//4
+        self.pos = 100,get_canvas_height()//4+80
         self.image = gfw.image.load('res/rockman.png')
         self.delta =0,25
         self.state='running'
         self.fidx = 0
         self.time=0
         self.FPS = 8
+        
 
     def state(self):
         return self.__state
@@ -64,7 +66,7 @@ class Player:
             self.pos=x,y
             self.delta = dx,dy
             if y<get_canvas_height()//4:
-                 self.pos = 75,get_canvas_height()//4
+                 self.pos = 100,get_canvas_height()//4+80
                  self.delta =0,25
                  self.state='running'
                  
@@ -78,21 +80,31 @@ class Player:
             self.pos=x,y
             self.delta = dx,dy
             if y<get_canvas_height()//4:
-                 self.pos = 75,get_canvas_height()//4
+                 self.pos = 100,get_canvas_height()//4+80
                  self.delta =0,25
                  self.state='running'
         
         pass
 
     def handle_event(self,e):
+        global fire_wav,jump_wav
+        fire_wav = load_wav(gobj.res('PL00_U_00023.wav'))
+        jump_wav = load_wav(gobj.res('STB_1_1_00007.wav'))
+       
+        fire_wav.set_volume(30)
+        jump_wav.set_volume(30)
+
         if e.type == SDL_KEYDOWN:
             if self.state=='jump':
                 if e.key ==SDLK_RETURN:
+                    fire_wav.play()
                     self.state='jumpfire'
             elif self.state=='running':
                 if e.key == SDLK_SPACE:
+                    jump_wav.play()
                     self.state = 'jump'
                 elif e.key == SDLK_RETURN:
+                    fire_wav.play()
                     self.state = 'gunfire'
 
         elif e.type ==SDL_KEYUP:

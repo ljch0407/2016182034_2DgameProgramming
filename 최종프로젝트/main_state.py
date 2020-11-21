@@ -13,12 +13,14 @@ def enter():
     bg.speed=20
     gfw.world.add(gfw.layer.bg,bg)
 
-    global bg_music
+    global bg_music,run_wav
     bg_music = load_music(gobj.res('bg.mp3'))
     bg_music.set_volume(60)
-   
     bg_music.repeat_play()
-    
+
+    run_wav = load_wav(gobj.res('STB_1_1_00003.wav'))
+    run_wav.repeat_play()
+    run_wav.set_volume(10)
     pass
 
 def update():
