@@ -1,7 +1,29 @@
 from pico2d import*
 import gfw
-from player import Player
+from gobj import *
+
 class bullet:
     size = 15
-    def __init__(self):
+    def __init__(self,x,y,speed):
+        self.x,self.y=x,y
+        self.dx= speed
+        self.image = gfw.image.load(RES_DIR+'/bullet.png')
+        self.power =100
+        self.fidx = 0
+
+    def draw(self):
+        self.image.clip_draw(self.fidx,0,10,10,self.x,self.y,bullet.size,bullet.size)
         
+    def update(self):
+        self.x +=self.x * gfw.delta_time
+        self.fidx=(self.fidx+1)%3
+        if self.x>get_canvas_width()+bullet.size:
+            self.remove()
+
+    def remove(self):
+        gfw.world.remove(self)
+
+    def get_bb(self):
+        hw = self.image.w//2
+        hh = self.image.h//2
+        return self.x-hx, self.y-hh,self.x+hw,self.y+hh

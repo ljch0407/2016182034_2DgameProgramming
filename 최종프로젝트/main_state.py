@@ -2,15 +2,16 @@ from pico2d import *
 import gfw
 import gobj
 from player import Player
+from bullet import bullet
 from background import HorzScrollBackground
 
 def enter():
-    gfw.world.init(['bg','enemy','player'])
+    gfw.world.init(['bg','enemy','bullet','player'])
     global player
     player = Player()
     gfw.world.add(gfw.layer.player,player)
     bg = HorzScrollBackground("bg.png")
-    bg.speed=20
+    bg.speed=50
     gfw.world.add(gfw.layer.bg,bg)
 
     global bg_music,run_wav

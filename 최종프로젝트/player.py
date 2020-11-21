@@ -1,6 +1,7 @@
 from pico2d import*
 import gfw
 import gobj
+from bullet import*
 
 class Player:
     def __init__(self):
@@ -17,6 +18,10 @@ class Player:
         return self.__state
     def state(self, state):
         self.__state=state
+    def fire(self):
+        x,y = self.pos
+        Bullet = bullet(x+30,y,600)
+        gfw.world.add(gfw.layer.bullet,Bullet)
 
     def draw(self):
         if self.state =='running':
@@ -34,10 +39,12 @@ class Player:
             pass
 
         elif self.state=='jumpfire':
+            self.fire()
             self.image.clip_draw(145,10,30,35,*self.pos,100,100)
             pass
         
         elif self.state=='gunfire':
+            self.fire()
             x,y = self.pos
             if self.fidx==0:
                 self.image.clip_draw(48,10,31,33,x,y+20,100,100)
@@ -115,6 +122,11 @@ class Player:
                 if e.key == SDLK_RETURN:
                     self.fidx=0
                     self.state='running'
+
+    def get_bb(self):
+        hw = self.image.w//2
+        hh = self.image.h//2
+        return self.x-hx, self.y-hh,self.x+hw,self.y+hh
                 
                     
                 
