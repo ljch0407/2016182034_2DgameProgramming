@@ -32,8 +32,9 @@ class Player:
             pass
 
         elif self.state=='jumpfire':
-            self.image.clip_draw(265,40,30,40,*self.pos,100,100)
+            self.image.clip_draw(145,10,30,35,*self.pos,100,100)
             pass
+        
         elif self.state=='gunfire':
             x,y = self.pos
             if self.fidx==0:
@@ -67,7 +68,7 @@ class Player:
                  self.delta =0,25
                  self.state='running'
                  
-         elif self.state=='jumpfire':
+        elif self.state=='jumpfire':
             x,y=self.pos
             dx,dy=self.delta
 
