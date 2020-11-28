@@ -11,6 +11,7 @@ class Enemy:
         self.radius = mag * self.image.h//2
         self.time = get_time()
         self.FPS = random.uniform(5.0,10.0)
+        pos = self.pos
 
     def init(self, pos,delta, imageName):
         self.pos =pos

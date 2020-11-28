@@ -14,7 +14,7 @@ def update(score):
 def generate_enemy(score):
     x,y,dx,dy = get_coords(score)
     e = Enemy((x,y), (dx,dy))
-    gfw.world.add(gfw.layer.enemy,m)
+    gfw.world.add(gfw.layer.enemy,e)
 
 def get_coords(score):
     dx = random.random()

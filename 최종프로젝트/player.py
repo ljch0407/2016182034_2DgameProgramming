@@ -3,16 +3,27 @@ import gfw
 import gobj
 from bullet import*
 
+MAX_LIFE = 5 
+
 class Player:
     def __init__(self):
+        global pos, radius
         self.pos = 100,get_canvas_height()//4+80
+        pos = self.pos
         self.image = gfw.image.load('res/rockman.png')
         self.delta =0,25
         self.state='running'
         self.fidx = 0
         self.time=0
         self.FPS = 8
-        
+        self.radius = 50
+        radius = self.radius
+        self.life = MAX_LIFE
+
+        self.life_1 = gfw.image.load('res/Life1.png')
+        self.life_2 = gfw.image.load('res/Life2.png')
+
+        self.reset()
 
     def state(self):
         return self.__state
@@ -23,6 +34,23 @@ class Player:
         Bullet = bullet(x+30,y,600)
         gfw.world.add(gfw.layer.bullet,Bullet)
 
+    def reset(self):
+        self.pos = 100,get_canvas_height()//4+80
+        self.state='running'
+        self.life = MAX_LIFE
+        self.delta =0,25
+
+    def decrease_life(self):
+        self.life-=1
+        return self.life<=0
+
+    def increas_life(self):
+        if self.life >=MAX_LIFE:
+            return True
+
+        self.life += 1
+        return False
+      
     def draw(self):
         if self.state =='running':
             if self.fidx==0:
@@ -54,6 +82,12 @@ class Player:
                 self.image.clip_draw(110,10,33,33,x,y+20,100,100)
             elif self.fidx==3:
                self.image.clip_draw(83,10,30,32,x,y+20,100,100)
+
+        x,y = get_canvas_width()-30, get_canvas_height()-30
+        for i in range(MAX_LIFE):
+            Life = self.life_1 if i<self.life else self.life_2
+            Life.draw(x,y)
+            x-=Life.w
 
                 
                 
