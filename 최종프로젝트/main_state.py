@@ -1,7 +1,7 @@
 from pico2d import *
 import gfw
 import gobj
-from player import Player
+import player
 from bullet import bullet
 import highscore
 from background import HorzScrollBackground
@@ -19,6 +19,7 @@ def start_game():
 
     player.reset()
     gfw.world.clear_at(gfw.layer.enemy)
+    gfw.world.remove(highscore)
 
     state = STATE_IN_GAME
 
@@ -27,22 +28,20 @@ def start_game():
 
     global bg_music,run_wav
     bg_music.repeat_play()
-    run_wav.repeat_play()
 
 def end_game():
     global state
     print('game over')
     state = STATE_GAME_OVER
-    bg_music.repeat_stop()
-    run_wav.repeat_stop()
+    bg_music.stop()
+    run_wav.play()
 
     highscore.add(score)
     gfw.world.add(gfw.layer.ui, highscore)
 
 def enter():
     gfw.world.init(['bg','enemy','bullet','player','ui'])
-    global player
-    player = Player()
+    player.init()
     gfw.world.add(gfw.layer.player,player)
     bg = HorzScrollBackground("bg.png")
     bg.speed=50
@@ -60,8 +59,7 @@ def enter():
     bg_music.repeat_play()
 
     run_wav = load_wav(gobj.res('STB_1_1_00003.wav'))
-    run_wav.repeat_play()
-    run_wav.set_volume(10)
+    run_wav.set_volume(5)
 
     highscore.load()
 
@@ -70,9 +68,20 @@ def enter():
     start_game()
     
     pass
+def check_enemy(e):
+    global score
+    for b in gfw.gfw.world.objects_at(gfw.layer.bullet):
+        if gobj.collides_box(b, e):
+            dead = e.decrease_hp(b.power)
+            if dead:
+                e.remove()
+                score+=1
+
+            b.remove()
+            return
 
 def update():
-    global state
+    global state, run_wav
     if state != STATE_IN_GAME:
         return
     global score
@@ -80,12 +89,14 @@ def update():
     
     gfw.world.update()
     generator.update(score)
+    for e in gfw.world.objects_at(gfw.layer.enemy):
+        check_enemy(e)
 
     hits, ends = check_collision()
     
     if ends:
         end_game()
-
+    run_wav.play()
     pass
 
 def draw():

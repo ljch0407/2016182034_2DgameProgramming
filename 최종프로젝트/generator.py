@@ -18,8 +18,7 @@ def generate_enemy(score):
 
 def get_coords(score):
     dx = random.random()
-    dx -= dx*2
-
+    
     dy =0
 
     mag = 1+score/60
