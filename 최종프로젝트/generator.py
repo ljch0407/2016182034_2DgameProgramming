@@ -3,7 +3,7 @@ import gfw
 from enemy import *
 import random
 
-enemy_count =10
+enemy_count =3
 item_count = 3
 def update(score):
     Max_enemy_count = enemy_count + score/10
