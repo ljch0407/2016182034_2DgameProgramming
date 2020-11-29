@@ -48,7 +48,7 @@ def decrease_life():
     life-=1
     return life<=0
 
-def increas_life():
+def increase_life():
     global life
     if life >=MAX_LIFE:
         return True

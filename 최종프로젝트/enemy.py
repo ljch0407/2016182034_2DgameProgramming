@@ -54,3 +54,7 @@ class Enemy:
         hw = self.image.w//2
         hh = self.image.h//2
         return x-hw,y-hh,x+hw,y+hh
+
+class E_can(Enemy):
+    def __init__(self,pos,delta):
+        self.init(pos,delta,'res/item.png')

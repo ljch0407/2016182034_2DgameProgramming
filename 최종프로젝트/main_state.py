@@ -40,7 +40,7 @@ def end_game():
     gfw.world.add(gfw.layer.ui, highscore)
 
 def enter():
-    gfw.world.init(['bg','enemy','bullet','player','ui'])
+    gfw.world.init(['bg','enemy','bullet','item','player','ui'])
     player.init()
     gfw.world.add(gfw.layer.player,player)
     bg = HorzScrollBackground("bg.png")
@@ -92,7 +92,12 @@ def update():
     for e in gfw.world.objects_at(gfw.layer.enemy):
         check_enemy(e)
 
-    hits, ends = check_collision()
+    hits, ends, item = check_collision()
+
+    if item is not None:
+        full = player.increase_life()
+        if full:
+            score+=3
     
     if ends:
         end_game()

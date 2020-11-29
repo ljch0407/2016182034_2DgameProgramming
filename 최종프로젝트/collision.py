@@ -1,6 +1,5 @@
 import gfw
 import player
-from bullet import *
 
 def collides_distance(a, b):
     ax,ay = a.pos
@@ -11,13 +10,18 @@ def collides_distance(a, b):
 
 # returns hit, dead
 def check_collision():
-    hit, dead = False, False
+    hit, dead, item = False, False, None
     for m in gfw.world.objects_at(gfw.layer.enemy):
         if collides_distance(player, m):
             hit = True
             gfw.world.remove(m)
             dead = player.decrease_life()
-            break
+
+    for m in gfw.world.objects_at(gfw.layer.item):
+        if collides_distance(player,m):
+            item = m
+            gfw.world.remove(m)
+            full = player.increase_life()
    
 
-    return hit, dead
+    return hit, dead, item
