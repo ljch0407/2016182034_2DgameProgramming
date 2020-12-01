@@ -19,6 +19,8 @@ def start_game():
 
     player.reset()
     gfw.world.clear_at(gfw.layer.enemy)
+    gfw.world.clear_at(gfw.layer.bullet)
+    gfw.world.clear_at(gfw.layer.item)
     gfw.world.remove(highscore)
 
     state = STATE_IN_GAME
@@ -40,6 +42,7 @@ def end_game():
     gfw.world.add(gfw.layer.ui, highscore)
 
 def enter():
+    global bg
     gfw.world.init(['bg','enemy','bullet','item','player','ui'])
     player.init()
     gfw.world.add(gfw.layer.player,player)
@@ -81,12 +84,12 @@ def check_enemy(e):
             return
 
 def update():
-    global state, run_wav
+    global state, run_wav,bg
     if state != STATE_IN_GAME:
         return
     global score
     score +=gfw.delta_time
-    
+    bg.speed = 50 + score//30
     gfw.world.update()
     generator.update(score)
     for e in gfw.world.objects_at(gfw.layer.enemy):
