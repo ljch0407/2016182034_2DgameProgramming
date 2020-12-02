@@ -42,6 +42,9 @@ def handle_event(e):
 
     
 def exit():
+    global bg_music
+    bg_music.stop()
+    del bg_music
     print("menu_state exits")
     pass
 

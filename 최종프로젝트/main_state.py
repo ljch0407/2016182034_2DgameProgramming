@@ -132,6 +132,10 @@ def handle_event(e):
 
 
 def exit():
+    global bg_music,run_wav
+    bg_music.stop()
+    del bg_music
+    del run_wav
     pass
 
 if __name__ == '__main__':
