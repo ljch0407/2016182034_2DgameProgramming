@@ -62,3 +62,8 @@
 |7주차|	사운드작업|	게임의 효과음과 BGM넣기|
 |8주차| 마무리|	게임의 오브젝트 최종설정 및 최종점검|
 
+***
+* 발표자료 링크
+ * 1차 발표 : https://youtu.be/TimSy8VVFqA
+ * 2차 발표 : https://youtu.be/RBZ-TMZnjbw
+ * 최종 발표 : https://youtu.be/P_kkmYSy_ro
